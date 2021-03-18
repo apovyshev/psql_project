@@ -1,8 +1,0 @@
-// This is an example script - don't forget to change it!
-LogRocket.identify('123456', {
-  name: 'Alexey Povyshev',
-  email: 'alex-stig2510@rambler.ru',
-
-  // Add your own custom user variables here, ie:
-  subscriptionType: 'pro'
-});

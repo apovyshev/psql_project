@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: persons-app
+spec:
+  selector:
+    matchLabels:
+      app: persons-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: persons-app
+    spec:
+      containers:
+      - name: persons-app
+        image: apovyshev/postgres:app4
+        ports:
+        - containerPort: 3000
+          protocol: TCP
