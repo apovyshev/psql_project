@@ -1,1 +1,3 @@
 node_modules
+logs
+tank_errors.log

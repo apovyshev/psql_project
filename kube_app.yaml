@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: persons-app
-        image: apovyshev/postgres:app4
+        image: apovyshev/postgres:app
         ports:
         - containerPort: 3000
           protocol: TCP
