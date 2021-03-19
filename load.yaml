@@ -3,19 +3,17 @@ overload:
   package: yandextank.plugins.DataUploader
   token_file: "token.txt"
 phantom:
-  address: 34.69.55.161:3000 
+  address: 127.0.0.1:3000
   instances: 50
   load_profile:
     load_type: rps 
-    schedule: const(1000, 5m)
+    schedule: line(100, 500, 5m)
   header_http: "1.1"
   headers:
-    - "[Host: 34.69.55.161:3000]"
+    - "[Host: 127.0.0.1:3000]"
     - "[Connection: close]"
   uris:
-    - "/persons"
     - "/persons/10"
-
 console:
   enabled: true
 telegraf:

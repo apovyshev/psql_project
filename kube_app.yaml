@@ -18,3 +18,17 @@ spec:
         ports:
         - containerPort: 3000
           protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: persons-loadbalancer
+spec:
+  type: LoadBalancer
+  selector:
+    app: persons-app
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      name: http  
