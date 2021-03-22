@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: persons-app
+  name: persons-app-deployment
 spec:
   selector:
     matchLabels:
       app: persons-app
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
         app: persons-app
     spec:
       containers:
-      - name: persons-app
+      - name: persons
         image: apovyshev/postgres:app
         ports:
         - containerPort: 3000
-          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: persons-loadbalancer
+  labels:
+    app: persons-app
 spec:
   type: LoadBalancer
-  selector:
-    app: persons-app
   ports:
-    - protocol: TCP
-      port: 3000
+    - port: 3000
       targetPort: 3000
-      name: http  
+      name: http 
+  selector:
+    app: persons-app    

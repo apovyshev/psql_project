@@ -11,7 +11,9 @@ phantom:
   header_http: "1.1"
   headers:
     - "[Host: 127.0.0.1:3000]"
-    - "[Connection: close]"
+    - "[Connection: keep-alive]"
+    - "[User-Agent: Tank]"
+    - "[Content-Type: application/json]"
   uris:
     - "/persons/10"
 console:
