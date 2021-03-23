@@ -3,19 +3,13 @@ overload:
   package: yandextank.plugins.DataUploader
   token_file: "token.txt"
 phantom:
-  address: 127.0.0.1:3000
+  address: 35.238.122.96:3000
+  ammofile: ./ammo.txt 
   instances: 50
   load_profile:
     load_type: rps 
-    schedule: line(100, 500, 5m)
-  header_http: "1.1"
-  headers:
-    - "[Host: 127.0.0.1:3000]"
-    - "[Connection: keep-alive]"
-    - "[User-Agent: Tank]"
-    - "[Content-Type: application/json]"
-  uris:
-    - "/persons/10"
+    schedule: line(100, 1000, 5m)
+  ssl: false  
 console:
   enabled: true
 telegraf:
