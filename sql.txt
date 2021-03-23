@@ -1,0 +1,63 @@
+kubectl -n pgo port-forward svc/postgres-operator 8443:8443
+
+
+database name: persons
+users:
+        username: testuser password: c3id8EJO+CfOX[_<(_lc-AdE
+
+psql -h 34.66.124.180 -U testuser -d persons -W 
+
+CREATE TABLE persons (
+  ID SERIAL PRIMARY KEY,
+  name VARCHAR,
+  age INTEGER
+);
+
+
+INSERT INTO persons (name, age) VALUES ('Tyler', 33);
+INSERT INTO persons (name, age) VALUES ('Natasha', 30);
+INSERT INTO persons (name, age) VALUES ('Dima', 21);
+INSERT INTO persons (name, age) VALUES ('Sonya', 25);
+INSERT INTO persons (name, age) VALUES ('Timo', 26);
+
+
+GET
+curl http://localhost:3000/persons
+
+GET (:id) 
+curl http://localhost:3000/persons/2
+
+POST
+curl --request POST --data "name=Dasha&age=27" http://35.238.122.96:3000/persons
+
+PUT
+curl -X PUT --data "name=Gosha&age=33" http://localhost:3000/persons/6
+
+DELETE
+curl -X DELETE http://35.238.122.96:3000/persons/6
+
+
+pgo
+
+--проверить кластер
+pgo show -n pgo cluster persons
+
+--проверить ноды для фэйловера
+pgo -n pgo failover --query persons
+
+--удалить ноду
+pgo scaledown -n pgo persons --target=persons-patn
+
+--добавить ноду
+pgo scale -n pgo persons --replica-count=1
+
+--сымитировать падение мастера
+pgo -n pgo failover persons
+
+--проверим статус
+pgo show -n pgo cluster persons
+
+tank
+--запуск теста
+docker run -v $(pwd):/var/loadtest --rm --net host -it direvius/yandex-tank
+
